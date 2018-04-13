@@ -102,8 +102,8 @@
       (with-decorator (wraps func)
         (fn [&rest args &kwargs kwargs]
           (setv result Nothing)
-          (with [(apply suppress exceptions)]
-            (setv result (Just (apply func args kwargs))))
+          (with [(suppress #* exceptions)]
+            (setv result (Just (func #* args #** kwargs))))
           (when (and predicate (not (>> result predicate)))
             (setv result Nothing))
           result)))))

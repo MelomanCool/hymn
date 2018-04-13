@@ -94,6 +94,6 @@
   (with-decorator (wraps func)
     (fn [&rest args &kwargs kwargs]
       (try
-        (Right (apply func args kwargs))
+        (Right (func #* args #** kwargs))
         (except [e BaseException]
           (Left e))))))
